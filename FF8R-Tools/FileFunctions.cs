@@ -35,7 +35,6 @@ namespace PackReader
         {
             using (BinaryReader br = new BinaryReader(File.OpenRead(file.Path)))
             {
-
                 return br.ReadBytes(file.BaseLength).ToArray();
             }
         }
@@ -61,9 +60,11 @@ namespace PackReader
 
         public void SaveFiles(string prefix)
         {
+            // skip to the offset where the contents section starts
             bin.ReadBytes(file.BaseLength);
             for (int a = 0; a < file.FileNames.Count; a++)
             {
+                // create the directories from the path of the current filename
                 var dir = file.FileNames[a].Split('\\');
                 var path = prefix;
                 for (int i = 0; i < dir.Length; i++)
@@ -74,6 +75,7 @@ namespace PackReader
                         path += dir[i] + "\\";
                     }
                 }
+                // save the current file
                 using (FileStream fs = new FileStream(path + dir[dir.Length - 1], FileMode.Create))
                 {
                     byte[] fileContent = bin.ReadBytes(file.Sizes[a]);
@@ -85,16 +87,17 @@ namespace PackReader
 
         private void ParseHeader()
         {
+            
+
             int index = header.Length - 1;
-            byte[] a = new byte[4];
-            int byteIndex = a.Length - 1;
-            // last file has 4 bytes as its length, rather than 8 bytes
+            byte[] firstBytes = new byte[4];
+            int byteIndex = firstBytes.Length - 1;
             for (int i = header.Length - 1; i > header.Length - 1 - 4; i--)
             {
-                a[byteIndex--] = header[i];
+                firstBytes[byteIndex--] = header[i];
                 index--;
             }
-            file.Sizes.Add(BitConverter.ToInt32(a, 0));
+            file.Sizes.Add(BitConverter.ToInt32(firstBytes, 0));
 
             for (int i = header.Length - 1 - 4; i > 7; i--)
             {

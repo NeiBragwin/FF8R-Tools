@@ -59,9 +59,9 @@ namespace UI
         {
             Console.WriteLine("Usage: FF8R-Tools [options] file \n" +
                 "Options: \n" +
-                "   -x \t unpack the file \n" +
-                "   -l \t list the files into a textfile \n" +
-                "   -o <path> \t output to path");
+                "   -x        \t unpack the file \n" +
+                "   -l        \t list the files into a textfile \n" +
+                "   -o <path> \t output extracted files to path");
         }
     }
 }
