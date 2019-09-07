@@ -60,7 +60,6 @@ namespace UI
             Console.WriteLine("Usage: FF8R-Tools [options] file \n" +
                 "Options: \n" +
                 "   -x \t unpack the file \n" +
-                "   -p \t pack into zzz file (not implemented) \n" +
                 "   -l \t list the files into a textfile \n" +
                 "   -o <path> \t output to path");
         }
