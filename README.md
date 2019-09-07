@@ -7,7 +7,6 @@ Only official .zzz files can be used. In later versions, I'll try to parse custo
 Usage: FF8R-Tools [options] file
 Options:
    -x    unpack the file
-   -p    pack into zzz file
    -l    list the files into a textfile
    -o <path>     output to path
 ```
