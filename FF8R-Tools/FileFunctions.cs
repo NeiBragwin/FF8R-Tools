@@ -42,13 +42,15 @@ namespace PackReader
                 // 4 bytes after nothing is the filesize
                 filesizes[i] = bin.ReadInt32();
             }
+
             // Save the files
             for (int i = 0; i < numberOfFiles; i++)
             {
                 Console.Write(filenames[i] + "\t");
-
-                new FileInfo(filenames[i]).Directory.Create();
-                using (BinaryWriter writer = new BinaryWriter(File.Open(filenames[i], FileMode.Create, FileAccess.Write)))
+                string directory = file.Split('.')[0] + "/";
+                // Create the directories and sub-directories based on the filepath
+                new FileInfo(directory + "\\" + filenames[i]).Directory.Create();
+                using (BinaryWriter writer = new BinaryWriter(File.Open(directory + "\\" + filenames[i], FileMode.Create, FileAccess.Write)))
                 {
                     writer.Write(bin.ReadBytes(filesizes[i]));
                 }
