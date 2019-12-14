@@ -8,8 +8,6 @@ namespace UI
 {
     public class UIConsole
     {
-        private static FileFunctions fileFunctions;
-        private static string outputPath;
 
         static void Main(string[] args)
         {
@@ -19,7 +17,8 @@ namespace UI
                 return;
             }
 
-            (new FileFunctions(args[0])).ExtractFiles();
+            //(new FileFunctions(args[0])).ExtractFiles();
+            (new PackFile(args[0])).PackFiles();
         }
     }
 }

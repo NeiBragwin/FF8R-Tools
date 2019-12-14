@@ -7,15 +7,15 @@ using System.Text.RegularExpressions;
 
 namespace PackReader
 {
-    public class FileFunctions
+    public class ExtractFile
     {
         public readonly string file;
         private readonly BinaryReader bin;
 
-        public FileFunctions(string file)
+        public ExtractFile(string file)
         {
             this.file = file;
-            bin = new BinaryReader(File.OpenRead(file));
+            // bin = new BinaryReader(File.OpenRead(file));
         }
 
         public void ExtractFiles()
@@ -57,5 +57,7 @@ namespace PackReader
                 Console.Write(filesizes[i] + " bytes saved" + "\n");
             }
         }
+
+        
     }
 }
