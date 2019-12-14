@@ -6,7 +6,7 @@ Only official .zzz files can be used.
 ```
 Usage: FF8R-Tools [options] file
 Options:
-   -x    unpack the file
-   -l    list the files into a textfile
-   -o <path>     output to path
+   -x            unpack the file
+   -l            list the files into a textfile
+   -o <path>     output extracted files to path
 ```
