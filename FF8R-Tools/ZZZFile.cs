@@ -9,6 +9,7 @@ namespace PackReader
     {
         public readonly string Path;
         public List<string> FileNames;
+        public List<int> Addresses;
         public List<int> Sizes;
         public List<int> Pointers;
         public readonly int BaseLength;
@@ -18,6 +19,7 @@ namespace PackReader
         {
             this.Path = Path;
             FileNames = new List<string>();
+            Addresses = new List<int>();
             Sizes = new List<int>();
             Pointers = new List<int>();
             this.BaseLength = BaseLength;
