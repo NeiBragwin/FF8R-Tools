@@ -15,7 +15,7 @@ namespace PackReader
         public ExtractFile(string file)
         {
             this.file = file;
-            // bin = new BinaryReader(File.OpenRead(file));
+            bin = new BinaryReader(File.OpenRead(file));
         }
 
         public void ExtractFiles()
@@ -43,10 +43,10 @@ namespace PackReader
                 filesizes[i] = bin.ReadInt32();
             }
 
+            Progress progress = new Progress(numberOfFiles);
             // Save the files
             for (int i = 0; i < numberOfFiles; i++)
             {
-                Console.Write(filenames[i] + "\t");
                 string directory = file.Split('.')[0] + "/";
                 // Create the directories and sub-directories based on the filepath
                 new FileInfo(directory + "\\" + filenames[i]).Directory.Create();
@@ -54,7 +54,7 @@ namespace PackReader
                 {
                     writer.Write(bin.ReadBytes(filesizes[i]));
                 }
-                Console.Write(filesizes[i] + " bytes saved" + "\n");
+                progress.Update();
             }
         }
 

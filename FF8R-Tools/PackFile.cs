@@ -35,6 +35,7 @@ namespace PackReader
                     headerLength += file.Length + 16;
                 }
 
+                Progress progress = new Progress(filenames.Count);
                 foreach (string filename in filenames)
                 {
                     byte[] fileContents = File.ReadAllBytes(filename);
@@ -53,6 +54,7 @@ namespace PackReader
                     writer.Write(fileContents.Length);
                     // update the pointer for the next file
                     headerLength += fileContents.Length;
+                    progress.Update();
                 }
 
                 // Write all the contents
